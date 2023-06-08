@@ -1,7 +1,7 @@
 name = "OkTexHelper"
 uuid = "e85a2721-9ec6-4204-992d-01b2e59f22bb"
 authors = ["okatsn <okatsn@gmail.com> and contributors"]
-version = "0.0.1-DEV"
+version = "0.0.2-DEV"
 
 [compat]
 julia = "1.8"
