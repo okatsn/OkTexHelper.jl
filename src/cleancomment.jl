@@ -1,0 +1,5 @@
+
+
+function cleancomment(fpath)
+
+end
