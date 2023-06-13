@@ -14,8 +14,12 @@ const blocklist = (
 
 elwiseor(a, b) = a .| b
 """
+Given file path `fpath` and column selector `colselector`, `cleanblock(fpath, colselector)` returns a vector of strings `lines` that blocks matching `colselector` were removed.
 
+Use `writelines` to save your result as file.
 
+# Example
+`cleanblock("temp/temp.tex") |> lines -> writelines(lines, "tempxxx.tex"; keep_empty = false, do_rstrip=true)`
 """
 function cleanblock(fpath, colselector)
     ext = splitext(fpath) |> last

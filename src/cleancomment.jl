@@ -1,4 +1,7 @@
-
+"""
+# Example
+`cleancomment("temp/temp.tex") |> lines -> writelines(lines, "tempxxx.tex"; keep_empty = false, do_rstrip=true)`
+"""
 function cleancomment(fpath)
     ext = splitext(fpath) |> last
     # whattype = eval(Symbol(uppercasefirst(ext[2:end]))) # ext = ".tex", and ext[2:end] = "tex"
