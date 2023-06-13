@@ -1,5 +1,8 @@
 module OkTexHelper
 
-# Write your package code here.
+include("codetype.jl")
+
+include("cleancomment.jl")
+export cleancomment, Tex, writelines
 
 end
