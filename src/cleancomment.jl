@@ -1,12 +1,4 @@
 
-abstract type CodeType end
-struct Tex <: CodeType end
-
-typedict = Dict(
-    ".tex" => Tex,
-)
-
-
 function cleancomment(fpath)
     ext = splitext(fpath) |> last
     # whattype = eval(Symbol(uppercasefirst(ext[2:end]))) # ext = ".tex", and ext[2:end] = "tex"
