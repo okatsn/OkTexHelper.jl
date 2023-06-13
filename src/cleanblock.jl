@@ -13,7 +13,7 @@ function cleanblock(fpath)
     ext = splitext(fpath) |> last
     whattype = typedict[ext]
     lines = readlines(fpath)
-
+    df = blocktable(lines)
 end
 
 repstar(str) = replace(str, "*" => "\\*")
@@ -32,4 +32,13 @@ function isblock(lines, tag::String)
         v[blockbegin:blockend] .= true
     end
     return v
+end
+
+
+function blocktable(lines)
+    df = DataFrame()
+    for blocktag in blocklist
+        insertcols!(df, blocktag => isblock(lines, blocktag))
+    end
+    return df
 end
