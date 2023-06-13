@@ -5,6 +5,7 @@ const blocklist = (
     "table*",
     "equation",
     "equation*",
+    "acknowledgments"
 )
 
 
@@ -15,14 +16,17 @@ function cleanblock(fpath)
 
 end
 
+repstar(str) = replace(str, "*" => "\\*")
+
+matchbegin(tag, str) = occursin(Regex("\\A\\s*\\\\begin\\{$(repstar(tag))\\}"), str)
+matchend(tag, str) = occursin(Regex("\\A\\s*\\\\end\\{$(repstar(tag))\\}"), str)
+
 
 function isblock(lines, tag::String)
     lenl = length(lines)
     v = fill(false, lenl)
-    expr0 = Regex("\\A\\s*\\\\begin\\{$tag\\}")
-    expr1 = Regex("\\A\\s*\\\\end\\{$tag\\}")
-    begins = occursin.(expr0, lines)
-    ends = occursin.(expr1, lines)
+    begins = matchbegin.(tag, lines)
+    ends = matchend.(tag, lines)
     @assert isequal(sum(begins), sum(ends))
     for (blockbegin, blockend) in zip(findall(begins), findall(ends))
         v[blockbegin:blockend] .= true
