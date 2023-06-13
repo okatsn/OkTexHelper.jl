@@ -11,14 +11,28 @@ const blocklist = (
     "acknowledgments"
 )
 
+
+elwiseor(a, b) = a .| b
 """
 
+
 """
-function cleanblock(fpath)
+function cleanblock(fpath, colselector)
     ext = splitext(fpath) |> last
     whattype = typedict[ext]
     lines = readlines(fpath)
     df = blocktable(lines)
+    select!(df, colselector)
+    targetblocks = reducelines(df)
+    return lines[.!targetblocks]
+end
+
+function cleanblock(fpath)
+    cleanblock(fpath, All())
+end
+
+function reducelines(df)
+    targetblocks = reduce(elwiseor, eachcol(df))
 end
 
 """
