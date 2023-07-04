@@ -73,6 +73,11 @@ end
 
 """
 Given the `fpath` to the text file, `CleanComments(fpath)` returns a `Vector` of `CleanComment`.
+
+# Example
+```julia
+CleanComments("temp/temp.tex") |> lines -> writelines(lines, "tempxxx.tex")
+```
 """
 function CleanComments(fpath)
     ext = splitext(fpath) |> last
