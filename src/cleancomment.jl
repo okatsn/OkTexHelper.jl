@@ -21,7 +21,7 @@ end
 `cleancomment` may result in empty lines or lines with only white spaces, and sometimes these empty lines results in complie error of latex (e.g., an blank line in a table block).
 To avoid this, set `keep_empty` to `false` and `do_rstrip` to `true` to discard all empty lines.
 """
-function writelines(lines::Vector{String}, targetpath; keep_empty=true, do_rstrip=false)
+function writelines(lines::Vector{<:AbstractString}, targetpath; keep_empty=true, do_rstrip=false)
     if do_rstrip
         lines = rstrip.(lines)
     end
